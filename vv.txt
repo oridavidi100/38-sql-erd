@@ -1,0 +1,97 @@
+-- MySQL Workbench Forward Engineering
+
+-- SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+-- SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+-- SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
+-- -----------------------------------------------------
+-- Schema test_db
+-- -----------------------------------------------------
+USE `test_db` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Teachers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Teachers` (
+  `idTeachers` INT NOT NULL,
+  `name` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`idTeachers`),
+  UNIQUE INDEX `idTeachers_UNIQUE` (`idTeachers` ASC) VISIBLE)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Classes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Classes` (
+  `Classe_name` INT NOT NULL,
+  `Teachers_idTeachers` INT NOT NULL,
+  PRIMARY KEY (`Classe_name`, `Teachers_idTeachers`),
+  UNIQUE INDEX `Classe_name_UNIQUE` (`Classe_name` ASC) VISIBLE,
+  INDEX `fk_Classes_Teachers1_idx` (`Teachers_idTeachers` ASC) VISIBLE,
+  CONSTRAINT `fk_Classes_Teachers1`
+    FOREIGN KEY (`Teachers_idTeachers`)
+    REFERENCES `mydb`.`Teachers` (`idTeachers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Pupils`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Pupils` (
+  `idPupils` INT NOT NULL,
+  `Pupil_name` VARCHAR(15) NULL,
+  `Classes_Classe_name` INT NOT NULL,
+  PRIMARY KEY (`idPupils`, `Classes_Classe_name`),
+  UNIQUE INDEX `idPupils_UNIQUE` (`idPupils` ASC) VISIBLE,
+  INDEX `fk_Pupils_Classes1_idx` (`Classes_Classe_name` ASC) VISIBLE,
+  UNIQUE INDEX `Classes_Classe_name_UNIQUE` (`Classes_Classe_name` ASC) VISIBLE,
+  CONSTRAINT `fk_Pupils_Classes1`
+    FOREIGN KEY (`Classes_Classe_name`)
+    REFERENCES `mydb`.`Classes` (`Classe_name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Subjects`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `Subjects` (
+  `idSubjects` INT NOT NULL,
+  `Subject_name` VARCHAR(15) NOT NULL,
+  `Teachers_idTeachers` INT NOT NULL,
+  UNIQUE INDEX `idSubjects_UNIQUE` (`idSubjects` ASC) VISIBLE,
+  PRIMARY KEY (`idSubjects`, `Teachers_idTeachers`),
+  UNIQUE INDEX `Subject_name_UNIQUE` (`Subject_name` ASC) VISIBLE,
+  INDEX `fk_Subjects_Teachers_idx` (`Teachers_idTeachers` ASC) VISIBLE,
+  CONSTRAINT `fk_Subjects_Teachers`
+    FOREIGN KEY (`Teachers_idTeachers`)
+    REFERENCES `mydb`.`Teachers` (`idTeachers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+
+Full-Stack developer with a strong interest in projects requiring conceptual and analytical  
+    thinking. 
+ I enjoy solving problems and facing new challenges. autodidact, hard    worker,with interpersonal 
+    skills .
+ I've received an excellence award for my work in the army.
+ Passion for computers and sports , Gamer .
