@@ -89,9 +89,3 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
-Full-Stack developer with a strong interest in projects requiring conceptual and analytical  
-    thinking. 
- I enjoy solving problems and facing new challenges. autodidact, hard    worker,with interpersonal 
-    skills .
- I've received an excellence award for my work in the army.
- Passion for computers and sports , Gamer .
